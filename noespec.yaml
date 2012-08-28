@@ -115,8 +115,8 @@ template-info:
   authors:
     - {name: Ryan Senkbeil, email: me@ryansenkbeil.com}
   links:
-    source: ...
-    documentation: ...
+    source: https://github.com/rsenk330/noe-sinatra
+    documentation: https://github.com/rsenk330/noe-sinatra
   manifest:
     app/app.rb:
       safe-override: false
