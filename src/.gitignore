@@ -1,0 +1,8 @@
+.bundle/
+.rbenv-version
+.yardoc/
+bin/
+coverage/
+data/
+doc/
+vendor/

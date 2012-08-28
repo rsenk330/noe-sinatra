@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+
+# Make sure rbenv and ruby-build are installed
+command -v rbenv >/dev/null 2>&1 || { echo -e "You need rbenv before continuing. For more information,\nsee https://github.com/sstephenson/rbenv.\n\nAlso ensure you are running this script like\n'. script/bootstrap'" >&2; return 1; }
+command -v ruby-build >/dev/null 2>&1 || { echo -e "You need ruby-build before continuing. For more information,\nsee https://github.com/sstephenson/ruby-build.\n\nAlso ensure you are running this script like\n'. script/bootstrap'" >&2; return 1; }
+
+bundler_version=`bundle --version | grep "Bundler version" | awk '{print $3}'`
+
+if [[ "$bundler_version" != "1.2.0.rc.2" ]] ; then
+    echo "You need the prerelease version of bundler."
+    echo "Install with \`gem install bundler --pre\`"
+
+    exit 1
+fi
+
+pushd `rbenv root`/versions/ > /dev/null
+ruby_versions=(*)
+ruby_versions+=('system ')
+popd > /dev/null
+
+if [ ! -f .rbenv-version ]; then
+    echo -n "Ruby version [system]: "
+    read ruby_version
+    if [ -z "$ruby_version" ] ; then
+        ruby_version="system"
+    fi
+
+    ver_found=0
+    ver_match=$(echo "\${ruby_versions[@]:0\}" | grep -o "$ruby_version ")
+    [[ ! -z $ver_match ]] && ver_found=1
+
+    if [[ "$ver_found" -eq "0" ]] ; then
+        echo
+        echo "The ruby version you specified is not yet installed. Installing now..."
+        rbenv install $ruby_version
+
+        RETVAL=$?
+
+        [ $RETVAL -ne 0 ] && return 1
+    fi
+
+    echo $ruby_version > .rbenv-version
+fi
+
+bundle install --binstubs --path=vendor/gems
+
+echo
+echo "Getting submodules"
+git submodule init
+git submodule update
+
+echo
+echo
+echo
+echo "Your environment has been setup. Run 'rake -T' to see additional commands."

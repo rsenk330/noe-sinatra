@@ -1,0 +1,9 @@
+source :rubygems
+
+ruby '1.9.3'
+
+*{dependencies as dep}{gem "+{dep.name}"?{dep.version}{, "+{dep.version}"}{}?{dep.require}{?{dep.require.kind_of?(Array)}{, :require => [*{dep.require as r}{"+{r}"}{, }]}{, :require => "+{dep.require}"}}}{!{"\n"}}
+
+group :development do
+  *{devel_dependencies as dep}{gem "+{dep.name}"?{dep.version}{, "+{dep.version}"}{}?{dep.require}{?{dep.require.kind_of?(Array)}{, :require => [*{dep.require as r}{"+{r}"}{, }]}{, :require => "+{dep.require}"}}}{!{"\n  "}}
+end

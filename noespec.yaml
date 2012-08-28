@@ -1,0 +1,158 @@
+variables:
+  # Project name
+  project_name:
+    Hello World
+
+  # Project name (lower_separated_by_underscores)
+  projectnamelower:
+    hello_world
+
+  # Project name (CamelCased)
+  project_name_camel:
+    HelloWorld
+
+  # Version of your sinatra application
+  app_version:
+    1.0.0
+
+  ruby_version:
+    1.9.3
+
+  # The domain name this will be hosted on (used for `redirect_to_www`)
+  domain_name:
+    www.example.com
+
+  # Automatically redirect non-www to www
+  redirect_to_www: true
+
+  # Project summary (~ 1 line)
+  summary: |
+    A simple "Hello World" example
+
+  # Project description (~ 5 lines). Project description should be more complete
+  # than the summary and will be used to describe your gem on rubygems.org
+  description: |-
+    This hello_world example provides you all you need to build a ruby gem library
+    while applying skeleton-driven coding with Noe (see http://revision-zero.org/noe)
+
+  # Authors of the project. Each author entry is a Hash and MUST at least have
+  # 'name' and 'email' keys. This is used to add meta information to your .gemspec
+  # file. Example:
+  #
+  # authors:
+  #  - name:  Bob
+  #    email: bob@gmail.com
+  #
+  authors: []
+
+  # Web links for the project. You should typically include links to the sources
+  # (github), rubygems.org, documentation and so on. The first link will be used
+  # to fill the .gemspec file. Example:
+  #
+  # links:
+  #   - http://github.com/bob/hello_world
+  #   - http://rubygems.org/gems/hello_world
+  #
+  links: []
+
+  # Gem dependencies. Each entry is a Hash that MUST at least have 'name', 'version'
+  # and 'groups' keys. The later is an array of dependency groups and are used to
+  # generate Gemfile and .gemspec files. For now, only 'development' and 'runtime'
+  # values are supported.
+  dependencies:
+    - {name: activesupport, require: 'active_support/core_ext'}
+    - {name: bcrypt-ruby, require: 'bcrypt'}
+    - {name: bundler}
+    - {name: 'coffee-script'}
+    - {name: foreman}
+    - {name: less}
+    - {name: libv8, version: '~> 3.11.8'}
+    - {name: mail}
+    - {name: mongoid, version: '~> 3.0.5'}
+    - {name: rack-rewrite}
+    - {name: rake}
+    - {name: redcarpet}
+    - {name: sinatra, require: 'sinatra/base'}
+    - {name: 'sinatra-contrib', require: ['sinatra/cookies', 'sinatra/content_for', 'sinatra/json', 'sinatra/reloader']}
+    - {name: slim}
+    - {name: sprockets}
+    - {name: therubyracer, version: '0.11.0beta8'}
+    - {name: unicorn}
+    - {name: 'yajl-ruby', require: 'yajl/json_gem'}
+
+  devel_dependencies:
+    - {name: 'rack-test'}
+    - {name: pry}
+    - {name: rspec}
+    - {name: thin}
+    - {name: yard}
+
+  # Below are defined a certain number of specific variables for the .gemspec file
+  # of your library. We'll include it here to keep .gemspec under Noe's control for
+  # simple yet flexible cases. If your gem configuration is really specific, you
+  # can always maintain the .gemspec manually by setting
+  # template-info/manifest/__lower__.gemspec/safe-override to false
+  gemspec:
+    # Paths in the gem to add to $LOAD_PATH when the gem is activated (required).
+    require_paths: [lib]
+    # The path in the gem for executable scripts
+    bindir: 'bin'
+    # Array containing the names of executables included in the gem,
+    # if any (Dir[...] patterns are supported).
+    executables: ['bin/*']
+    # Array of test files (Dir[...] patterns are supported).
+    test_files: ['spec/**/*']
+
+template-info:
+  name: "!{template_name}"
+  version: 1.0.0
+
+  summary: |
+    Template for creating a sinatra web application
+  description: |
+    This project provides a [Noe](https://github.com/blambeau/noe) template for
+    creating a sinatra web application.
+  authors:
+    - {name: Ryan Senkbeil, email: me@ryansenkbeil.com}
+  links:
+    source: ...
+    documentation: ...
+  manifest:
+    app/app.rb:
+      safe-override: false
+    app/controllers/root.rb:
+      safe-override: false
+    config/boot.rb:
+      safe-override: false
+    config/database.rb:
+      safe-override: false
+    config/mongoid.yml:
+      safe-override: false
+    config/unicorn.rb:
+      safe-override: false
+    lib/__project_name_lower__/version.rb:
+      safe-override: false
+    lib/__project_name_lower__.rb:
+      safe-override: false
+    script/bootstrap:
+      safe-override: false
+    spec/spec.rake:
+      safe-override: false
+    spec/spec_helper.rb:
+      safe-override: false
+    .gitignore:
+      safe-override: false
+    CHANGES.md:
+      safe-override: false
+    config.ru:
+      safe-override: false
+    Gemfile:
+      safe-override: false
+    LICENSE:
+      safe-override: false
+    Procfile:
+      safe-override: false
+    Rakefile:
+      safe-override: false
+    README.md:
+      safe-override: false

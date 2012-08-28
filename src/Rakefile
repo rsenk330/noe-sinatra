@@ -1,0 +1,18 @@
+Dir["tasks/*.rake"].each do |taskfile|
+  load taskfile
+end
+
+require File.expand_path("config/boot.rb", __FILE__)
+
+desc "Start a ruby interpreter"
+task :console do
+  ARGV.clear
+
+  begin
+    require 'pry'
+    Pry.start
+  rescue NameError, LoadError
+    require 'irb'
+    IRB.start
+  end
+end
